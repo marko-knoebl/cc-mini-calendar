@@ -42,12 +42,7 @@ function App() {
   return (
     <div className="App">
       <h1>Calendar</h1>
-      {appointments.map((appointment) => (
-        <li key={appointment.id}>
-          {appointment.date} {appointment.time} {appointment.name}
-          <button onClick={() => deleteAppointment(appointment.id)}>Delete</button>
-        </li>
-      ))}
+      <hr></hr>
       <input
         value={dateInput}
         placeholder="date"
@@ -69,7 +64,14 @@ function App() {
           setTimeInput(event.target.value);
         }}
       ></input>
-      <button onClick={addEntry}>Add Entry</button>
+      <button className="button" onClick={addEntry}>Add Entry</button>
+      {appointments.map((appointment) => (
+        <li className="item-singular" key={appointment.id}>
+          {appointment.date} {appointment.time} {appointment.name}
+          <button className="button" onClick={() => deleteAppointment(appointment.id)}>Delete</button>
+        </li>
+      ))}
+      
     </div>
   );
 }

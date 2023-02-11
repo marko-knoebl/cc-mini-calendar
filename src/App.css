@@ -1,0 +1,19 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.item-singular {
+  padding: 10px;
+  background-color: antiquewhite;
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.button {
+  margin: 10px;
+  background-size: auto;
+}
+
+input {
+  margin-right: 5px;
+}
