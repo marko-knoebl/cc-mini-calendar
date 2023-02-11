@@ -35,12 +35,17 @@ function App() {
     }
   }
 
+  function deleteAppointment(id) {
+    setAppointments(appointments.filter(appointment => appointment.id !== id));
+  }
+  
   return (
     <div className="App">
       <h1>Calendar</h1>
       {appointments.map((appointment) => (
         <li key={appointment.id}>
           {appointment.date} {appointment.time} {appointment.name}
+          <button onClick={() => deleteAppointment(appointment.id)}>Delete</button>
         </li>
       ))}
       <input
