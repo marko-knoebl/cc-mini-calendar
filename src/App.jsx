@@ -2,6 +2,10 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [dateInput, setDateInput] = useState("");
+  const [timeInput, setTimeInput] = useState("");
+  const [nameInput, setNameInput] = useState("");
+
   const [appointments, setAppointments] = useState([
     {
       id: 1,
@@ -17,6 +21,20 @@ function App() {
     },
   ]);
 
+  function addEntry() {
+    if (dateInput !== "" && timeInput !== "" && nameInput !== "") {
+      setAppointments([
+        ...appointments,
+        {
+          id: Math.floor(Math.random() * 100),
+          date: dateInput,
+          time: timeInput,
+          name: nameInput,
+        },
+      ]);
+    }
+  }
+
   return (
     <div className="App">
       <h1>Calendar</h1>
@@ -25,6 +43,28 @@ function App() {
           {appointment.date} {appointment.time} {appointment.name}
         </li>
       ))}
+      <input
+        value={dateInput}
+        placeholder="date"
+        onChange={(event) => {
+          setDateInput(event.target.value);
+        }}
+      ></input>
+      <input
+        value={nameInput}
+        placeholder="name"
+        onChange={(event) => {
+          setNameInput(event.target.value);
+        }}
+      ></input>
+      <input
+        value={timeInput}
+        placeholder="time"
+        onChange={(event) => {
+          setTimeInput(event.target.value);
+        }}
+      ></input>
+      <button onClick={addEntry}>Add Entry</button>
     </div>
   );
 }
