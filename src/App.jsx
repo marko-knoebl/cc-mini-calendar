@@ -36,9 +36,21 @@ function App() {
   }
 
   function deleteAppointment(id) {
-    setAppointments(appointments.filter(appointment => appointment.id !== id));
+    setAppointments(
+      appointments.filter((appointment) => appointment.id !== id)
+    );
   }
-  
+
+  function changeName(id, name) {
+    setAppointments(appointments.map((appointment) => {
+      if(appointment.id === id) {
+        return {...appointment, name: name}
+      } else {
+        return appointment
+      }
+    }))
+  }
+
   return (
     <div className="App">
       <h1>Calendar</h1>
@@ -64,14 +76,21 @@ function App() {
           setTimeInput(event.target.value);
         }}
       ></input>
-      <button className="button" onClick={addEntry}>Add Entry</button>
+      <button className="button" onClick={addEntry}>
+        Add Entry
+      </button>
       {appointments.map((appointment) => (
         <li className="item-singular" key={appointment.id}>
-          {appointment.date} {appointment.time} {appointment.name}
-          <button className="button" onClick={() => deleteAppointment(appointment.id)}>Delete</button>
+          {appointment.date} {appointment.time}{" "}
+          <input className="name-input" value={appointment.name} onChange={(event) => changeName(appointment.id, event.target.value)} />
+          <button
+            className="button"
+            onClick={() => deleteAppointment(appointment.id)}
+          >
+            Delete
+          </button>
         </li>
       ))}
-      
     </div>
   );
 }

@@ -17,3 +17,9 @@
 input {
   margin-right: 5px;
 }
+
+.name-input {
+  font-size: 16px;
+  border: none;
+  background-color: antiquewhite;
+}
